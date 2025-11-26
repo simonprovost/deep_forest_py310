@@ -4,8 +4,8 @@ from setuptools import Extension, find_packages, setup
 
 
 # Project Information
-DISTNAME = "deep-forest"
-DESCRIPTION = "Deep Forest"
+DISTNAME = "deep-forest-py310"
+DESCRIPTION = "Deep Forest (community-maintained fork with Python 3.10+ support)"
 with open("README.rst", encoding="utf-8") as f:
     LONG_DESCRIPTION = f.read()
 MAINTAINER = "Simon Provost"

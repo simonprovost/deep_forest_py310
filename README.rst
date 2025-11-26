@@ -33,6 +33,8 @@ for a long time (with one recent try to move to py310+ but with CI/CD failing).
 If the upstream maintainers prioritise these updates, we are happy to
 contribute everything back via pull request.
 
+See more in https://github.com/simonprovost/deep_forest_py310/pull/1
+
 **DF21** is an implementation of `Deep Forest <https://arxiv.org/pdf/1702.08835.pdf>`__ 2021.2.1. It is designed to have the following advantages:
 
 - **Powerful**: Better accuracy than existing tree-based ensemble methods.
@@ -49,7 +51,14 @@ DF21 is optimized for what a tree-based ensemble excels at (i.e., tabular data),
 Installation
 ------------
 
-DF21 can be installed using pip via `PyPI <https://pypi.org/project/deep-forest/>`__  which is the package installer for Python. You can use pip to install packages from the Python Package Index and other indexes. Refer `this <https://pypi.org/project/pip/>`__ for the documentation of pip. Use this command to download DF21 :
+This fork is published on PyPI as ``deep-forest-py310``. You can install it with:
+
+.. code-block:: bash
+
+    pip install deep-forest-py310
+
+If you specifically want to use the original upstream project (which may not support
+modern Python versions), you can instead install:
 
 .. code-block:: bash
 
