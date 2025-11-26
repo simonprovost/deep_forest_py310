@@ -1,0 +1,84 @@
+name: Manual Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release (e.g., 0.1.8 <~ Must be above 0.1.7 as this is the point where we forked DF21)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install build backend
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build toml
+
+      - name: Update version in setup.py
+        env:
+          RELEASE_VERSION: "${{ github.event.inputs.version }}"
+        run: |
+          python - <<'PY'
+          import os
+          import pathlib
+          import re
+
+          release_version = os.environ["RELEASE_VERSION"].strip()
+          if not release_version:
+              raise SystemExit("RELEASE_VERSION is required")
+
+          version = pathlib.Path("setup.py")
+          text = version.read_text()
+          new_text, count = re.subn(
+              r'^VERSION = "[^"]+"', f'VERSION = "{release_version}"', text, flags=re.MULTILINE
+          )
+          if count == 0:
+              raise SystemExit("VERSION assignment not found in setup.py")
+          if new_text != text:
+              version.write_text(new_text)
+          PY
+        shell: bash
+
+      - name: Commit version bump
+        env:
+          RELEASE_VERSION: "${{ github.event.inputs.version }}"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add setup.py
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: release v${RELEASE_VERSION}"
+          fi
+
+      - name: Create and push tag
+        env:
+          RELEASE_VERSION: "${{ github.event.inputs.version }}"
+        run: |
+          git tag "v${RELEASE_VERSION}" || true
+          git push origin HEAD
+          git push origin "v${RELEASE_VERSION}"
+
+      - name: Build distributions
+        run: python -m build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
