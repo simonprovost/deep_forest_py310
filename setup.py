@@ -11,7 +11,7 @@ with open("README.rst", encoding="utf-8") as f:
 MAINTAINER = "Simon Provost"
 MAINTAINER_EMAIL = "simon.gilbert.provost@gmail.com"
 URL = "https://github.com/simonprovost/deep_forest_py310"
-VERSION = "0.1.7"
+VERSION = "0.1.8"
 
 
 if __name__ == "__main__":
