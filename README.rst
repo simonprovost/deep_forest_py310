@@ -1,5 +1,5 @@
 Deep Forest (DF) 21 (Support for Python 3.10+)
-===================
+==============================================
 
 |github|_ |readthedocs|_ |codecov|_ |python|_ |pypi|_ |style|_
 
@@ -11,7 +11,7 @@ Deep Forest (DF) 21 (Support for Python 3.10+)
 
 .. |codecov| image:: https://codecov.io/gh/LAMDA-NJU/Deep-Forest/branch/master/graph/badge.svg?token=5BVXOT8RPO
 .. _codecov: https://codecov.io/gh/LAMDA-NJU/Deep-Forest
-    
+
 .. |python| image:: https://img.shields.io/pypi/pyversions/deep-forest
 .. _python: https://pypi.org/project/deep-forest/
 
@@ -21,11 +21,17 @@ Deep Forest (DF) 21 (Support for Python 3.10+)
 .. |style| image:: https://img.shields.io/badge/code%20style-black-000000.svg
 .. _style: https://github.com/psf/black
 
-📣 Community Maintained Fork of Deep Forest to support Python 3.10+::
-------------
+Community Maintained Fork of Deep Forest (Python 3.10+)
+-------------------------------------------------------
 
-This repository is a community-maintained copy of the original `Deep Forest (DF21) project <https://github.com/LAMDA-NJU/Deep-Forest>`_. We do **not** claim credit for the underlying research or implementation; our goal is to keep the project usable on modern Python versions (e.g., Python 3.10+) while the upstream repository has seen minimal activity since a long time (with one recent try to move to py310+ but with CI/CD failing). If the upstream maintainers prioritise these updates, we are happy to contribute everything back via pull request.
-
+This repository is a community-maintained copy of the original
+`Deep Forest (DF21) project <https://github.com/LAMDA-NJU/Deep-Forest>`_.
+We do **not** claim credit for the underlying research or implementation;
+our goal is to keep the project usable on modern Python versions
+(e.g., Python 3.10+) while the upstream repository has seen minimal activity
+for a long time (with one recent try to move to py310+ but with CI/CD failing).
+If the upstream maintainers prioritise these updates, we are happy to
+contribute everything back via pull request.
 
 **DF21** is an implementation of `Deep Forest <https://arxiv.org/pdf/1702.08835.pdf>`__ 2021.2.1. It is designed to have the following advantages:
 

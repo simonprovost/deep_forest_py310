@@ -6,11 +6,11 @@ from setuptools import Extension, find_packages, setup
 # Project Information
 DISTNAME = "deep-forest"
 DESCRIPTION = "Deep Forest"
-with open("README.rst") as f:
+with open("README.rst", encoding="utf-8") as f:
     LONG_DESCRIPTION = f.read()
 MAINTAINER = "Simon Provost"
 MAINTAINER_EMAIL = "simon.gilbert.provost@gmail.com"
-URL = "https://github.com/LAMDA-NJU/Deep-Forest"
+URL = "https://github.com/simonprovost/deep_forest_py310"
 VERSION = "0.1.7"
 
 
@@ -91,21 +91,23 @@ if __name__ == "__main__":
         url=URL,
         version=VERSION,
         long_description=LONG_DESCRIPTION,
+        long_description_content_type="text/x-rst",
         zip_safe=False,
         ext_modules=extensions,
         classifiers=[
             "Intended Audience :: Science/Research",
             "Intended Audience :: Developers",
             "Programming Language :: Python",
+            "Programming Language :: Python :: 3",
+            "Programming Language :: Python :: 3.10",
+            "Programming Language :: Python :: 3.11",
+            "Programming Language :: Python :: 3.12",
             "Topic :: Software Development",
             "Topic :: Scientific/Engineering",
             "Operating System :: Microsoft :: Windows",
             "Operating System :: Unix",
-            "Programming Language :: Python :: 3.7",
-            "Programming Language :: Python :: 3.8",
-            "Programming Language :: Python :: 3.9",
         ],
-        python_requires=">=3.7",
+        python_requires=">=3.10",
         install_requires=[
             "numpy>=1.14.6,<2.0",
             "scipy>=1.1.0",
