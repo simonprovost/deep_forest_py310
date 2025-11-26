@@ -49,6 +49,17 @@ from .tree._tree import DOUBLE
 MAX_INT = np.iinfo(np.int32).max
 
 
+def _normalize_regression_criterion(criterion: str) -> str:
+    """Align legacy regression criteria names with scikit-learn
+    expectations."""
+
+    if criterion == "mse":
+        return "squared_error"
+    if criterion == "mae":
+        return "absolute_error"
+    return criterion
+
+
 def _get_n_samples_bootstrap(n_samples, max_samples):
     """
     Get the number of samples in a bootstrap sample.
@@ -199,9 +210,7 @@ def _partition_estimators(n_estimators, n_jobs):
     n_jobs = min(effective_n_jobs(n_jobs), n_estimators)
 
     # Partition estimators between jobs
-    n_estimators_per_job = np.full(
-        n_jobs, n_estimators // n_jobs, dtype=int
-    )
+    n_estimators_per_job = np.full(n_jobs, n_estimators // n_jobs, dtype=int)
     n_estimators_per_job[: n_estimators % n_jobs] += 1
     starts = np.cumsum(n_estimators_per_job)
 
@@ -840,7 +849,7 @@ class RandomForestRegressor(ForestRegressor):
         self,
         n_estimators=100,
         *,
-        criterion="mse",
+        criterion="squared_error",
         max_depth=None,
         min_samples_split=2,
         min_samples_leaf=1,
@@ -853,6 +862,7 @@ class RandomForestRegressor(ForestRegressor):
         verbose=0,
         max_samples=None
     ):
+        criterion = _normalize_regression_criterion(criterion)
         super().__init__(
             base_estimator=DecisionTreeRegressor(),
             n_estimators=n_estimators,
@@ -889,7 +899,7 @@ class ExtraTreesRegressor(ForestRegressor):
         self,
         n_estimators=100,
         *,
-        criterion="mse",
+        criterion="squared_error",
         max_depth=None,
         min_samples_split=2,
         min_samples_leaf=1,
@@ -902,6 +912,7 @@ class ExtraTreesRegressor(ForestRegressor):
         verbose=0,
         max_samples=None
     ):
+        criterion = _normalize_regression_criterion(criterion)
         super().__init__(
             base_estimator=ExtraTreeRegressor(),
             n_estimators=n_estimators,

@@ -1,6 +1,10 @@
 Deep Forest (DF) 21
 ===================
 
+.. note::
+
+   This repository is a community-maintained copy of the original `Deep Forest (DF21) project <https://github.com/LAMDA-NJU/Deep-Forest>`_. We do **not** claim credit for the underlying research or implementation; our goal is to keep the project usable on modern Python versions (e.g., Python 3.10+) while the upstream repository has seen minimal activity since a long time (with one recent try to move to py310+ but with CI/CD failing). If the upstream maintainers prioritise these updates, we are happy to contribute everything back via pull request.
+
 |github|_ |readthedocs|_ |codecov|_ |python|_ |pypi|_ |style|_
 
 .. |github| image:: https://github.com/LAMDA-NJU/Deep-Forest/workflows/DeepForest-CI/badge.svg
