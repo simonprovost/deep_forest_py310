@@ -350,10 +350,10 @@ __regressor_model_doc = """
         The maximum number of cascade layers in the deep forest. Notice that
         the actual number of layers can be smaller than ``max_layers`` because
         of the internal early stopping stage.
-    criterion : :obj:`{"mse", "mae"}`, default= :obj:`"mse"`
-        The function to measure the quality of a split. Supported criteria are 
-        ``mse`` for the mean squared error, which is equal to variance reduction 
-        as feature selection criterion, and ``mae`` for the mean absolute error.
+    criterion : :obj:`{"squared_error", "absolute_error"}`, default= :obj:`"squared_error"`
+        The function to measure the quality of a split. Supported criteria are
+        ``squared_error`` for the mean squared error, which is equal to variance reduction
+        as feature selection criterion, and ``absolute_error`` for the mean absolute error.
     n_estimators : :obj:`int`, default=2
         The number of estimator in each cascade layer. It will be multiplied
         by 2 internally because each estimator contains a
@@ -1553,7 +1553,7 @@ class CascadeForestRegressor(BaseCascadeForest, RegressorMixin):
         bin_subsample=200000,
         bin_type="percentile",
         max_layers=20,
-        criterion="mse",
+        criterion="squared_error",
         n_estimators=2,
         n_trees=100,
         max_depth=None,

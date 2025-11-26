@@ -49,7 +49,12 @@ DTYPE = _tree.DTYPE
 DOUBLE = _tree.DOUBLE
 
 CRITERIA_CLF = {"gini": _criterion.Gini, "entropy": _criterion.Entropy}
-CRITERIA_REG = {"mse": _criterion.MSE, "mae": _criterion.MAE}
+CRITERIA_REG = {
+    "mse": _criterion.MSE,
+    "mae": _criterion.MAE,
+    "squared_error": _criterion.MSE,
+    "absolute_error": _criterion.MAE,
+}
 
 DENSE_SPLITTERS = {
     "best": _splitter.BestSplitter,
@@ -181,7 +186,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
             if self.class_weight is not None:
                 y_original = np.copy(y)
 
-            y_encoded = np.zeros(y.shape, dtype=np.int)
+            y_encoded = np.zeros(y.shape, dtype=int)
             for k in range(self.n_outputs_):
                 classes_k, y_encoded[:, k] = np.unique(
                     y[:, k], return_inverse=True
@@ -504,7 +509,7 @@ class DecisionTreeRegressor(RegressorMixin, BaseDecisionTree):
     def __init__(
         self,
         *,
-        criterion="mse",
+        criterion="squared_error",
         splitter="best",
         max_depth=None,
         min_samples_split=2,
@@ -580,7 +585,7 @@ class ExtraTreeRegressor(DecisionTreeRegressor):
     def __init__(
         self,
         *,
-        criterion="mse",
+        criterion="squared_error",
         splitter="random",
         max_depth=None,
         min_samples_split=2,
