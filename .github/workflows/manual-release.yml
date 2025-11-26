@@ -76,10 +76,12 @@ jobs:
           git push origin HEAD
           git push origin "v${RELEASE_VERSION}"
 
-      - name: Build distributions
-        run: python -m build
+      - name: Build distributions (sdist only)
+        run: python -m build --sdist
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
+          packages-dir: dist
+          skip-existing: true
