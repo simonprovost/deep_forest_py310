@@ -8,7 +8,7 @@ from deepforest._estimator import Estimator
 
 # Load utils
 from sklearn.ensemble._hist_gradient_boosting.binning import _BinMapper
-from sklearn.datasets import load_digits, load_boston
+from sklearn.datasets import load_digits, load_diabetes
 from sklearn.model_selection import train_test_split
 
 
@@ -50,7 +50,7 @@ classifier_estimator_kwargs = {
 regressor_layer_kwargs = {
     "layer_idx": 0,
     "n_outputs": 1,
-    "criterion": "mse",
+    "criterion": "squared_error",
     "n_estimators": 1,
     "n_trees": 10,
     "max_depth": 3,
@@ -64,7 +64,7 @@ regressor_layer_kwargs = {
 
 regressor_estimator_kwargs = {
     "name": "rf",
-    "criterion": "mse",
+    "criterion": "squared_error",
     "n_trees": 10,
     "max_depth": 3,
     "min_samples_leaf": 10,
@@ -99,7 +99,7 @@ def test_classifier_layer_properties_after_fitting():
 
 def test_regressor_layer_properties_after_fitting():
     # Load data and binning
-    X, y = load_boston(return_X_y=True)
+    X, y = load_diabetes(return_X_y=True)
     binner = _BinMapper(random_state=142)
     X_binned = binner.fit_transform(X)
 
