@@ -1,6 +1,5 @@
 """A wrapper on the base estimator for the naming consistency."""
 
-
 __all__ = ["Estimator"]
 
 import numpy as np

@@ -104,6 +104,8 @@ if __name__ == "__main__":
             "Programming Language :: Python :: 3.10",
             "Programming Language :: Python :: 3.11",
             "Programming Language :: Python :: 3.12",
+            "Programming Language :: Python :: 3.13",
+            "Programming Language :: Python :: 3.14",
             "Topic :: Software Development",
             "Topic :: Scientific/Engineering",
             "Operating System :: Microsoft :: Windows",
@@ -111,10 +113,10 @@ if __name__ == "__main__":
         ],
         python_requires=">=3.10",
         install_requires=[
-            "numpy>=1.14.6,<2.0",
+            "numpy>=1.21,<3",
             "scipy>=1.1.0",
             "joblib>=0.11",
             "scikit-learn>=1.0,<1.6",
         ],
-        setup_requires=["cython", "numpy>=1.21,<2.0"],
+        setup_requires=["Cython>=3.0,<3.1", "numpy>=1.21,<3"],
     )

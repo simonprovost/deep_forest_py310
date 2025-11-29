@@ -2,7 +2,6 @@
 Implementation of the estimator wrapper to support customized base estimators.
 """
 
-
 __all__ = ["KFoldWrapper"]
 
 import copy

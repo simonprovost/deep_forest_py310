@@ -5,7 +5,6 @@ This class is modified from:
     https://github.com/scikit-learn/scikit-learn/blob/main/sklearn/ensemble/_forest.py
 """
 
-
 __all__ = [
     "RandomForestClassifier",
     "RandomForestRegressor",
@@ -618,7 +617,11 @@ class ForestClassifier(ClassifierMixin, BaseForest, metaclass=ABCMeta):
             for j in np.atleast_1d(self.n_classes_)
         ]
         lock = threading.Lock()
-        Parallel(n_jobs=n_jobs, verbose=self.verbose, require="sharedmem",)(
+        Parallel(
+            n_jobs=n_jobs,
+            verbose=self.verbose,
+            require="sharedmem",
+        )(
             delayed(_accumulate_prediction)(
                 self.features[i],
                 self.thresholds[i],
@@ -801,7 +804,11 @@ class ForestRegressor(RegressorMixin, BaseForest, metaclass=ABCMeta):
 
         # Parallel loop
         lock = threading.Lock()
-        Parallel(n_jobs=n_jobs, verbose=self.verbose, require="sharedmem",)(
+        Parallel(
+            n_jobs=n_jobs,
+            verbose=self.verbose,
+            require="sharedmem",
+        )(
             delayed(_accumulate_prediction)(
                 self.features[i],
                 self.thresholds[i],
