@@ -5,7 +5,6 @@ This class is modified from:
     https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/ensemble/_hist_gradient_boosting/binning.py
 """
 
-
 __all__ = ["Binner"]
 
 import numpy as np

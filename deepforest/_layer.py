@@ -1,6 +1,5 @@
 """Implementation of the cascade layer in deep forest."""
 
-
 __all__ = [
     "BaseCascadeLayer",
     "ClassificationCascadeLayer",

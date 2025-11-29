@@ -1,6 +1,5 @@
 """Implement utilities used in deep forest."""
 
-
 import numpy as np
 from datetime import datetime
 
