@@ -1,6 +1,5 @@
 """Implementation of Deep Forest."""
 
-
 __all__ = ["CascadeForestClassifier", "CascadeForestRegressor"]
 
 import numbers
@@ -770,10 +769,12 @@ class BaseCascadeForest(BaseEstimator, metaclass=ABCMeta):
         X, y = check_X_y(
             X,
             y,
-            multi_output=True
-            if type_of_target(y)
-            in ("continuous-multioutput", "multiclass-multioutput")
-            else False,
+            multi_output=(
+                True
+                if type_of_target(y)
+                in ("continuous-multioutput", "multiclass-multioutput")
+                else False
+            ),
         )
 
         self._check_input(X, y)
@@ -1427,10 +1428,12 @@ class CascadeForestClassifier(BaseCascadeForest, ClassifierMixin):
         X, y = check_X_y(
             X,
             y,
-            multi_output=True
-            if type_of_target(y)
-            in ("continuous-multioutput", "multiclass-multioutput")
-            else False,
+            multi_output=(
+                True
+                if type_of_target(y)
+                in ("continuous-multioutput", "multiclass-multioutput")
+                else False
+            ),
         )
         # Check the input for classification
         y = self._encode_class_labels(y)
@@ -1639,10 +1642,12 @@ class CascadeForestRegressor(BaseCascadeForest, RegressorMixin):
         X, y = check_X_y(
             X,
             y,
-            multi_output=True
-            if type_of_target(y)
-            in ("continuous-multioutput", "multiclass-multioutput")
-            else False,
+            multi_output=(
+                True
+                if type_of_target(y)
+                in ("continuous-multioutput", "multiclass-multioutput")
+                else False
+            ),
         )
 
         # Check the input for regression

@@ -5,7 +5,6 @@ This class is modified from:
     https://github.com/scikit-learn/scikit-learn/blob/main/sklearn/tree/_classes.py
 """
 
-
 __all__ = [
     "DecisionTreeClassifier",
     "DecisionTreeRegressor",
