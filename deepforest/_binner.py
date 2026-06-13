@@ -10,6 +10,7 @@ __all__ = ["Binner"]
 import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils import check_random_state, check_array
+from packaging.version import Version
 
 from . import _cutils as _LIB
 
@@ -48,9 +49,15 @@ def _find_binning_thresholds_per_feature(
         if bin_type == "percentile":
             percentiles = np.linspace(0, 100, num=n_bins + 1)
             percentiles = percentiles[1:-1]
-            midpoints = np.percentile(
-                col_data, percentiles, interpolation="midpoint"
-            ).astype(X_DTYPE)
+            # Check if it is older than 1.22
+            if Version(np.__version__) < Version("1.22"):
+                midpoints = np.percentile(
+                    col_data, percentiles, interpolation="midpoint"
+                ).astype(X_DTYPE)
+            else:
+                midpoints = np.percentile(
+                    col_data, percentiles, method="midpoint"
+                ).astype(X_DTYPE)
             assert midpoints.shape[0] == n_bins - 1
             np.clip(midpoints, a_min=None, a_max=ALMOST_INF, out=midpoints)
         # Equal interval in terms of value
